@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunting Github</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+	</script>
+</head>
+<body>
+    <div>
+        <button class="button">Get Trivia Questions</button>
+    </div>
+    <h1>Trivia</h1>
+    <script type="text/javascript">
+        $('.button').click(function() {
+            $.get("https://opentdb.com/api.php?amount=10&type=multiple", triviaQuestions);
+        });
+        function triviaQuestions(data) {
+            results = data.results;
+            for (let i = 0; i < results.length; i++) {
+                answers = results[i].incorrect_answers;
+                answers.push(results[i].correct_answer);
+                answers.sort();
+                $('h1').append('<h2>Category:</h2><p>'
+                    + results[i].category
+                    + '</p><h2>Question:</h2><p>'
+                    + results[i].question
+                    + '</p><h2>Answers:</h2><ul>');
+                for (let a = 0; a < answers.length; a++) {
+                    $('h1').append('<li>' + answers[a] + '</li>');
+                }
+                $('h1').append('</ul>');
+            }
+        }
+    </script>
+</body>
+</html>
