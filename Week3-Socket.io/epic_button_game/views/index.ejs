@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Epic button game</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+
+
+    <script type ="text/javascript">
+        $(document).ready(function (){
+        	
+            var socket = io.connect();
+         
+            $('#btn').click(function(){
+            	socket.emit("button")
+            });
+				 
+			
+	
+			 $('#reset').click(function(){
+				socket.emit("reset")      
+			});
+			socket.on('update_number', function(number) {
+				$('#number').html(number);
+				});
+				
+			});
+       
+     
+    </script>
+
+</head>
+<body>
+	
+	<div id="message"></div>
+
+	<h1>The button has been clicked <span id="number"></span> time(s)</h1>
+	<p>Click the button to update the count!</p>
+	
+	<button id="btn">Click Me</button>
+
+	<button id="reset" >Reset</button>
+
+</body>
+</html>
