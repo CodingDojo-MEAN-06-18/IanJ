@@ -1,0 +1,10 @@
+.toggle {
+  display: inline-block;
+}
+button {
+  background-color: red;
+  width: 55px;
+}
+.on {
+  background-color: green;
+}

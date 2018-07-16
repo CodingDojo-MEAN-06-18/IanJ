@@ -1,0 +1,11 @@
+<fieldset>
+  <h1>{{ title }}</h1>
+  <div>
+    <button (click)="selectZone('PST')" [ngClass]="{yellow : zone === 'PST'}">PST</button>
+    <button (click)="selectZone('MST')" [ngClass]="{yellow : zone === 'MST'}">MST</button>
+    <button (click)="selectZone('CST')" [ngClass]="{yellow : zone === 'CST'}">CST</button>
+    <button (click)="selectZone('EST')" [ngClass]="{yellow : zone === 'EST'}">EST</button>
+    <button (click)="clear()">Clear</button>
+  </div>
+  <h2>{{ dt | date:"medium":zone }}</h2>
+</fieldset>

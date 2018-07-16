@@ -1,0 +1,7 @@
+<fieldset>
+  <h1>{{ title }}</h1>
+  <div class="toggle" *ngFor="let toggle of toggles; let i = index">
+    <button *ngIf="toggle === true" [ngClass]="{'on': toggle === true}" (click)="changeButton(i)">ON</button>
+    <button *ngIf="!toggle" (click)="changeButton(i)">OFF</button>
+  </div>
+</fieldset>
