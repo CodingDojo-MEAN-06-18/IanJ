@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Animal</title>
+</head>
+<body>
+    <main>
+        <fieldset>
+            <legend>Add animal</legend>
+                <% if(messages.animals) { %>
+                    <% for (var message of messages.animals) { %>
+                    <p><%= message %></p>
+                    <% } %>
+                <% } %>
+            <form action="/" method="POST">
+                Name: <input type="text" name="name">
+                Age: <input type="text" name="age">
+                <button>Add</button>
+            </form>
+        </fieldset>
+    </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+    <main>
+        <fieldset>
+            <legend>Mongoose Dashboard</legend>
+                <% if(messages.animal) { %>
+                    <% for (var message of messages.animal) { %>
+                    <p><%= message %></p>
+                    <% } %>
+                <% } %>
+        
+            <a href="/new">Add Animal</a>
+            <h3>Animal List</h3>
+                <% for (let animal of animals) { %>
+                <p>Name: <a href="/<%= animal._id %>"><%= animal.name %> </a> </p>
+                <form action="/animals/destroy/<%= animal._id %>" method='post'>
+                    <button>Delete</button>
+                </form>
+           
+                <% } %>
+        </fieldset>
+    </main>
+    
+</body>
+</html>

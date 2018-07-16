@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+    <main>
+        <fieldset>
+            <legend>Edit #<%= animal.name %></legend>
+            <form action="/animals/<%= animal.id %>" method="POST">
+                Name: <input type="text" name="name" value="<%= animal.name %>">
+                Age: <input type="text" name="age" value="<%= animal.age %>">
+                <button>Submit</button>
+            </form>
+        </fieldset>
+    </main>
+</body>
+</html>
