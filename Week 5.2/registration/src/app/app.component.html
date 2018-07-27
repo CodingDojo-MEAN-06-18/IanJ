@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="form-group row">
+    <div class="col">
+      <h1>{{ title }}</h1>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="valid == true">
+    <div class="col alert alert-primary">
+      Thank you for registering with us {{users[users.length - 1].first}}. We just sent you a confirmation email at {{users[users.length
+      - 1].email}} and will send all mail to {{users[users.length - 1].address}} {{users[users.length - 1].unit}} {{users[users.length
+      - 1].city}} {{users[users.length - 1].state}}
+
+      <p>Have a wonderful day!</p>
+    </div>
+  </div>
+  <form #myForm="ngForm" (submit)='submit($event, myForm)'>
+    <fieldset class="border border-primary p-4">
+      <legend>Account Information</legend>
+
+      <div class="form-group row">
+        <label for="first" class="col-sm-2 col-form-label">First Name : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="first" [(ngModel)]="user.first" #first="ngModel" required minlength="2" maxlength="24">
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!first.valid && first.dirty">Must be between 2 and 24 characters</div>
+
+      <div class="form-group row">
+        <label for="last" class="col-sm-2 col-form-label">Last Name : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="last" [(ngModel)]="user.last" #last="ngModel" required minlength="2" maxlength="24">
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!last.valid && last.dirty">Must be between 2 and 24 characters</div>
+
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!email.valid && email.dirty">Must be valid email</div>
+
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required minlength="8"
+            maxlength="24">
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!password.valid && password.dirty">Must be between 2 and 24 characters</div>
+
+      <div class="form-group row">
+        <label for="confirm_pw" class="col-sm-2 col-form-label">Confirm Password : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="confirm_pw" [(ngModel)]="user.confirm_pw" #confirm_pw="ngModel" required minlength="8"
+            maxlength="24">
+        </div>
+      </div>
+      <div class="col-5 text-danger col-form-label" *ngIf="!confirm_pw.valid && confirm_pw.dirty">Required</div>
+      <div class="col-5 text-danger col-form-label" *ngIf="pw_match == false && myForm.valid">Passwords must match</div>
+
+      <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Address : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="address" [(ngModel)]="user.address" #address="ngModel" required minlength="8"
+            maxlength="24">
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!address.valid && address.dirty">Must be between 2 and 24 characters</div>
+
+      <div class="form-group row">
+        <label for="unit" class="col-sm-2 col-form-label">Unit/Apt : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="unit" [(ngModel)]="user.unit" #unit="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">City : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="city" [(ngModel)]="user.city" #city="ngModel" required>
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!city.valid && city.dirty">Required</div>
+
+      <div class="form-group row">
+        <label for="state" class="col-sm-2 col-form-label">State : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="state" [(ngModel)]="user.state" #state="ngModel" required>
+        </div>
+      </div>
+      <div class="col text-danger col-sm-2 col-form-label" *ngIf="!state.valid && state.dirty">Required</div>
+
+      <div class="form-group row">
+        <label for="lucky" class="col-sm-2 col-form-label">Lucky? </label>
+        <div class="col-sm-10">
+          <label>
+            <input type="radio" name="lucky" required [(ngModel)]="user.lucky" #lucky="ngModel" value="true"> Yes
+          </label>
+          <label>
+            <input type="radio" name="lucky" required [(ngModel)]="user.lucky" #lucky="ngModel" value="false"> No
+          </label>
+        </div>
+      </div>
+      <div class="col-5 text-danger col-form-label" *ngIf="!lucky.valid && lucky.dirty">Required</div>
+
+    </fieldset>
+    <input type="submit" value="Register" class="btn btn-primary btn-block mt-2" [disabled]='!myForm.valid'>
+  </form>
+</div>

@@ -1,0 +1,8 @@
+<section>
+  <h1>Quotes List</h1>
+  <fieldset *ngFor="let quote of quotes">
+    <p>Quote:" {{ quote.body }} "</p>
+    <p>- {{ quote.author }}</p>
+    <button (click)="destroy(quote)">Delete</button>
+  </fieldset>
+</section>

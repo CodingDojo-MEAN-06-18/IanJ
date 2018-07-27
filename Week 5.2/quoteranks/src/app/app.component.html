@@ -1,0 +1,4 @@
+<div class="container">
+  <app-quote-new [quotes]='quotes' (addQuoteEvent)='addQuote($event)'></app-quote-new>
+  <app-quote-list [quotes]='quotes' (removeQuoteEvent)='destroyQuote($event)'></app-quote-list>
+</div>
