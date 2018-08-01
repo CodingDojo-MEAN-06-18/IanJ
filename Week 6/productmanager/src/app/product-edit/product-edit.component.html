@@ -1,0 +1,27 @@
+<section>
+  <h2>Edit Product</h2>
+  <div>
+    <form (submit)="update($event)" #form='ngForm'>
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" name="name" [(ngModel)]="product.name" required minLength=4 #name="ngModel">
+        <div class="errors" *ngIf="name.dirty && name.errors">
+          <div *ngIf='name.errors.required'>Name is required!</div>
+          <div>Enter at least {{name.errors.minLength.requiredLength }} characters!</div>
+        </div>
+      </div>
+      <div>
+        <label>Price</label>
+        <input type="text" name="price" [(ngModel)]="product.price" required #price="ngModel">
+        <div class="errors" *ngIf="(price.dirty && price.errors">
+          <div *ngIf="price.errors.required">Enter a price!</div>
+        </div>
+      </div>
+      <div>
+        <label for="image">Image Url</label>
+        <input type="text" name="img" [(ngModel)]="product.img">
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>

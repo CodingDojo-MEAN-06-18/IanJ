@@ -1,0 +1,22 @@
+<section>
+  <h2>Create Product</h2>
+  <form(submit)='create($event)' #createForm='ngForm'>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" [(ngModel)]="product.name" #name="ngModel" required minlength="4">
+      <div class="errors" *ngIf="name.dirty && name.errors">
+        <p *ngIf="name.errors.minlength">Title must be {{ name.errors.minlength.requiredLength }} or more characters.</p>
+      </div>
+    </div>
+    <div>
+      <label for="price">Price</label>
+      <input type="number" name="price" [(ngModel)]="product.price" #price="ngModel" required>
+      <div class="errors" *ngif="price.dirty $$ price.errors">Enter a price!</div>
+    </div>
+    <div>
+      <label for="img">Image Url</label>
+      <input type="text" name="img" [(ngModel)]="product.img">
+    </div>
+    <button type="submit" [disabled]="!formData.valid">Submit</button>
+    </form>
+</section>
